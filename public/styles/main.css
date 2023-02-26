@@ -234,6 +234,7 @@ body {
 
 .username {
     font-size: 20px;
+	display: flex;
 }
 
 .username .text-username {
