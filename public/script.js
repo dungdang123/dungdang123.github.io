@@ -59,7 +59,9 @@ function fetchData() {
 function timeLert(i) {
     let string = "";
     if(i < 10) {
-        string += "0"+i
+        string += "0"+i;
+    } else {
+        string += i;
     }
     return string;
 }
