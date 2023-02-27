@@ -128,7 +128,7 @@
                             </div>
                         </div>
                         <div class="footer" style="padding: 0 20px 10px 20px;text-align: center;">
-                            <div><span style="font-size: 13px;font-weight: 700;">© 2023 Cenrom, Inc.</span></div>
+                            <div><span style="font-size: 13px;font-weight: 700;" id="yearNumber">© ---- Cenrom, Inc.</span></div>
                         </div>
                     </div>
                 </div>
@@ -143,6 +143,11 @@
             <li></li>
             <li></li>
         </ul>  
+        <script>
+            const d = new Date();
+            let year = d.getFullYear();
+            document.getElementById("yearNumber").innerHTML = year;
+        </script>
         <script src="./public/jquery.min.js"></script>
         <script src="./public/script.js"></script>
     </body>
