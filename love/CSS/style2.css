@@ -1,0 +1,52 @@
+body{
+    background-color: black;
+    overflow: hidden;
+    height: 100%;
+}
+
+img{
+    display: block;
+    margin: auto;
+}
+
+.illust{
+    position: absolute;
+    bottom:0px;
+    left:0;
+    right:0;
+    z-index: 3;
+}
+
+.typo{
+    padding: 37vh 0px;
+    animation: slide 3s ease-in-out;
+}
+
+h1{
+    font-family: 'Gyahegi', sans-serif;
+    color: #ff5c44;
+    font-size: 85pt;
+    text-align: center;
+    z-index: 1;
+}
+
+@keyframes slide {
+    from{
+        padding: 24vh 0px;
+        opacity: 0;
+
+    }
+    to{
+        padding: 37vh 0px;
+        opacity: 1;
+    }
+}
+
+#bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
