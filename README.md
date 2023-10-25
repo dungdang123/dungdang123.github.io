@@ -1,1 +1,1 @@
-# Thank you for visiting my Personal Page ❤️🫶
+# Thank you for visiting my Personal Page ❤️
