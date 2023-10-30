@@ -1,4 +1,4 @@
-const yourDate = new Date("2023-10-24T00:00:00"),
+const yourDate = new Date("2023-10-21T00:00:00"),
 music = ['ido', 'noinaycoanh', 'nguoiamphu'];
 document.addEventListener('DOMContentLoaded', function(){
     var rootTime = document.querySelector("time");
@@ -68,3 +68,22 @@ function updated(countdown) {
     drawCircle('#efefef', options.lineWidth, 100 / 100);
     drawCircle('#a96fa1', options.lineWidth, options.percent / 100);
 }
+
+const ngaySinh_Male = new Date('2004-11-28');
+const ngaySinh_FeMale = new Date('2010-02-01');
+const ngayHienTai = new Date();
+let tuoi_Male = ngayHienTai.getFullYear() - ngaySinh_Male.getFullYear();
+let tuoi_FeMale = ngayHienTai.getFullYear() - ngaySinh_FeMale.getFullYear();
+// Kiểm tra xem đã qua sinh nhật chưa trong năm nay
+const daQuaSinhNhat_Male = ngayHienTai.getMonth() > ngaySinh_Male.getMonth() || (ngayHienTai.getMonth() === ngaySinh_Male.getMonth() && ngayHienTai.getDate() >= ngaySinh_Male.getDate());
+if(!daQuaSinhNhat_Male) {
+    tuoi_Male--; // Chưa qua sinh nhật, giảm đi 1 tuổi
+}
+
+const daQuaSinhNhat_FeMale = ngayHienTai.getMonth() > ngaySinh_FeMale.getMonth() || (ngayHienTai.getMonth() === ngaySinh_FeMale.getMonth() && ngayHienTai.getDate() >= ngaySinh_FeMale.getDate());
+if(!daQuaSinhNhat_FeMale) {
+    tuoi_FeMale--; // Chưa qua sinh nhật, giảm đi 1 tuổi
+}
+
+document.querySelector('[tuoiMale]').innerHTML = tuoi_Male;
+document.querySelector('[tuoiFeMale]').innerHTML = tuoi_FeMale;
