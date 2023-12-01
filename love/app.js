@@ -1,4 +1,4 @@
-const yourDate = new Date("2023-10-21T00:00:00"),
+const yourDate = new Date("2023-11-21T00:00:00"),
 music = ['ido', 'noinaycoanh', 'nguoiamphu'];
 document.addEventListener('DOMContentLoaded', function(){
     var rootTime = document.querySelector("time");
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function(){
         updated(Math.floor(Math.floor((new Date() - yourDate) / 1000) / 60 / 60 / 24));
     }; olock();
     var timer = setInterval(function(){olock()}, 1000);
-    document.querySelector("audio").setAttribute("src", `https://dungdang123.github.io/love/${music[Math.floor(Math.random()*music.length)]}.mp3`);
+    document.querySelector("audio").setAttribute("src", `/love/${music[Math.floor(Math.random()*music.length)]}.mp3`);
     document.getElementsByTagName("body")[0].insertAdjacentHTML("beforeend", "<div id='mask'></div>");
 }, false);
 
@@ -70,7 +70,7 @@ function updated(countdown) {
 }
 
 const ngaySinh_Male = new Date('2004-11-28');
-const ngaySinh_FeMale = new Date('2010-02-01');
+const ngaySinh_FeMale = new Date('2009-05-03');
 const ngayHienTai = new Date();
 let tuoi_Male = ngayHienTai.getFullYear() - ngaySinh_Male.getFullYear();
 let tuoi_FeMale = ngayHienTai.getFullYear() - ngaySinh_FeMale.getFullYear();
