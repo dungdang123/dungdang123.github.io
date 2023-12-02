@@ -136,13 +136,13 @@ body {
 }
 
 .overlay {
-  width: 118px;
+  width: 113px;
   position: absolute; 
   height: 118px;
   border-radius: 50%;
   background: var(--bg-color);
   top: 70px;
-  left: 50px;
+  left: 65px;
   z-index: 0;
   transition: transform 0.3s ease-out;
 }
