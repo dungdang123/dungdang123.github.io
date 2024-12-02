@@ -453,7 +453,7 @@ $(document).ready(function() {
     var textIntervalTitle;
     var textIntervalContent;
     
-    function resetText(status='f') {
+    function resetText(status) {
         if(status !== 't') {
             $('dotlottie-player').hide(100);
         } else {
