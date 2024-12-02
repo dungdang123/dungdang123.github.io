@@ -453,7 +453,13 @@ $(document).ready(function() {
     var textIntervalTitle;
     var textIntervalContent;
     
-    function resetText() {
+    function resetText(status='f') {
+        if(status !== 't') {
+            $('dotlottie-player').hide(100);
+        } else {
+            $('dotlottie-player').show(100);
+        }
+        
         document.querySelector("#viewLove").style.filter = 'blur(5px)';
         clearInterval(textIntervalTitle)
         clearInterval(textIntervalContent)
@@ -480,7 +486,8 @@ $(document).ready(function() {
                 showLoaderOnConfirm: true,
                 preConfirm: async (data) => {
                     if(data === 'christmas2024') {
-                        resetText();
+                        resetText('f');
+                        $('dotlottie-player').hide();
                         let textTitle = "Gửi Cậu!";
                         let charArrTitle = textTitle.split('');
                         let textLove = "NĂM NAY TỚ VẪN CHƯA ĐỦ KHẢ NĂNG ĐỂ DẪN CẬU ĐI CHƠI , TỚ CŨNG KHÔNG GẦN CẬU NÊN KHÔNG TẶNG ĐƯỢC QUÀ TỚ XIN LỖI VÌ ĐỂ CẬU THIỆT THÒI GÒI NHƯNG MÀ VÀO MỘT NGÀY NÀO ĐÓ TỚ SẼ MONG CẬU CHO TỚ BÙ ĐẮP NHỮNG GÌ CẬU ĐANG KHÔNG ĐƯỢC CÓ. CHÚC CẬU LÚC NÀO CŨNG NỞ TƯƠI NỤ CƯỜI! TỚ YÊU CẬU NHIỀU!TỚ THÍCH CẬU NHIỀU LẮM NHƯNG MÀ CẬU ƠI TỚ HẾT TRẺ CON RÙI :((TỚ NGU VĂN Ý NÊN KHÔNG BIẾT NÓI GÌ NỮA CHÚC CẬU GIÁNG SINH VUI VẺ NHA! MERRY CHRISTMAS!"
@@ -534,7 +541,7 @@ $(document).ready(function() {
                     }
                 }, 100)
             } else {
-                resetText()
+                resetText('t')
             }
         };
     });
