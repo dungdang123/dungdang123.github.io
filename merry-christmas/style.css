@@ -540,3 +540,25 @@ div:where(.swal2-container) h2:where(.swal2-title) {
 .centerer :not(#countdown).button {
 
 }
+
+@media (max-width: 575.98px) {
+    .tree {
+        left: 40px !important;
+    }
+
+    .tree img {
+        width: 120px !important;
+    }
+
+    .fox {
+        right: 15px !important;
+    }
+
+    .fox img {
+        width: 150px !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    
+}
