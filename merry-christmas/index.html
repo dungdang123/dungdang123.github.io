@@ -19,9 +19,20 @@
     <script src="EasePack3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="./app.js" defer=""></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
     <title>MERRY CHRISTMAST</title>
 </head>
-<body translate="no">
+<body translate="no" style="position: relative;">
+    <div class="center-me">
+        <div>
+            <div>
+                <span>
+                    <span style="color: #ff0000;">⚠</span> Vui lòng mở trên Máy tính, Thư viện không hỗ trợ thiết bị di động !!! <span style="color: #ff0000;">⚠</span><br>
+                    <span style="font-size: 20px;color: #0095ff;">Web design & Web developer by @dvd2k4.it</span>
+                </span>
+            </div>
+        </div>
+    </div>
     <div class="wrapper">
         <canvas id="snow" class="snow" width="1920" height="681"></canvas>
         <div class="animation">
@@ -498,7 +509,7 @@
                             <feComposite in="SourceGraphic" operator="over"></feComposite>
                         </filter>
                     </defs>
-                    <g class="whole">
+                    <g class="whole" transform="translate(0, -50)">
                         <g class="pContainer" data-svg-origin="0 0" transform="matrix(1,0,0,1,609.6,464.1)" style="translate: none; rotate: none; scale: none; transform-origin: 0px 0px;"></g>
 
                         <g class="tree" mask="url(#treePathMask)">
@@ -958,7 +969,10 @@
                 <div class="card-page cart-page-bottom">
                     <h4></h4>
                     <p></p>
-                    <p style="filter: blur(5px);" id="viewLove">No^No ! Chưa nhập mật khẩu đừng nhìn !</p>
+                    <div style="position: relative;">
+                        <p style="filter: blur(5px);" id="viewLove">No^No ! Chưa nhập mật khẩu !</p>
+                        <dotlottie-player src="https://lottie.host/78ff708a-77a3-4f08-961b-222bbd046f73/2AFHuOZTyu.lottie" background="transparent" speed="1" style="width: 100px;height: 100px;background-color: #ff000000;position: absolute;z-index: 99999;transition: transform 0.5s ease;top: 45px;transform: translate(-50%, -50%) rotate(315deg);left: 50%;" loop="" autoplay=""></dotlottie-player>
+                    </div>
                 </div>
             </div>
             <div class="bgCard"></div>
