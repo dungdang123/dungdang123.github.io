@@ -488,9 +488,9 @@ $(document).ready(function() {
                     if(data === 'christmas2024') {
                         resetText('f');
                         $('dotlottie-player').hide();
-                        let textTitle = "Gửi Cậu!";
+                        let textTitle = "Gửi Cậu - Thư ❤!";
                         let charArrTitle = textTitle.split('');
-                        let textLove = "NĂM NAY TỚ VẪN CHƯA ĐỦ KHẢ NĂNG ĐỂ DẪN CẬU ĐI CHƠI , TỚ CŨNG KHÔNG GẦN CẬU NÊN KHÔNG TẶNG ĐƯỢC QUÀ TỚ XIN LỖI VÌ ĐỂ CẬU THIỆT THÒI GÒI NHƯNG MÀ VÀO MỘT NGÀY NÀO ĐÓ TỚ SẼ MONG CẬU CHO TỚ BÙ ĐẮP NHỮNG GÌ CẬU ĐANG KHÔNG ĐƯỢC CÓ. CHÚC CẬU LÚC NÀO CŨNG NỞ TƯƠI NỤ CƯỜI! TỚ YÊU CẬU NHIỀU!TỚ THÍCH CẬU NHIỀU LẮM NHƯNG MÀ CẬU ƠI TỚ HẾT TRẺ CON RÙI :((TỚ NGU VĂN Ý NÊN KHÔNG BIẾT NÓI GÌ NỮA CHÚC CẬU GIÁNG SINH VUI VẺ NHA! MERRY CHRISTMAS!"
+                        let textLove = "CẬU ƠI, SAU 5 NĂM, NĂM NAY TỚ MỚI CÓ DỊP Ở GẦN CẬU ĐỂ CÓ THỂ DẪN CẬU ĐI CHƠI , CHÚC CẬU LÚC NÀO CŨNG NỞ TƯƠI NỤ CƯỜI! TỚ YÊU CẬU NHIỀU!TỚ THÍCH CẬU NHIỀU LẮM NHƯNG MÀ CẬU ƠI TỚ HẾT TRẺ CON RÙI :((TỚ NGU VĂN Ý NÊN KHÔNG BIẾT NÓI GÌ NỮA NHƯNG NHỮNG GÌ TỚ MUỐN NÓI LÀ: CHÚC CẬU GIÁNG SINH VUI VẺ NHA! MERRY CHRISTMAS!"
                         let charArrContent = textLove.split('');
 
                         textIntervalTitle = setInterval(function() {
