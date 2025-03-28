@@ -1,0 +1,356 @@
+html, body {
+    background-color: #f6f6f6;
+    margin: 0;
+    padding: 0;
+}
+
+img {max-width: 100%;}
+
+body {
+    display: grid;
+    font-family: "Segoe UI", sans-serif;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(auto, auto);
+    color: #3e3e3e;
+    text-shadow: 0.4px 0.4px 0.4px rgba(0,0,0,.2);
+}
+
+h1 {
+    font-weight: lighter;
+    grid-column: span 3;
+    text-align: center;
+    color: #ec407a;
+}
+
+#wrapper {
+    display: grid;
+    grid-column: 3 / 11;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(auto, auto);
+    grid-row-gap: 10px;
+    margin-top: 3.6rem;
+}
+
+#clock-box, #info {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+}
+
+#clock-box #clock {
+    grid-column: 4 / 10;
+    background-color: #F8C8C8;
+    padding: .6rem 2rem;
+    padding-top: .8rem;
+    text-align: center;
+    font-size: 2.4rem;
+    border-radius: 10rem;
+}
+
+date, time {
+    display: block;
+}
+
+date {
+    font-size: 18px;
+}
+
+time {
+    font-family: "Comfortaa", sans-serif;
+    line-height: 3.2rem;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.avt {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 8px rgba(0,0,0,.2);
+    border: solid 3px #846FD3;
+}
+
+#info {
+    margin-top: 2.4rem;
+}
+
+#heart {
+    grid-column: span 2;
+    display: grid;
+    font-size: 44px;
+    color: #b90d46;
+    align-self: center;
+    padding-bottom: 2.6rem;
+}
+
+anni {
+    font-size: 16px;
+    letter-spacing: 0.2px;
+}
+
+#info .one {
+    grid-column: 3 / 6;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Comfortaa", sans-serif;
+}
+
+#info .two {
+    grid-column: 8 / 11;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Comfortaa", sans-serif;
+}
+
+footer {
+    grid-column: span 3;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: lighter;
+    margin-top: 1.2rem;
+}
+
+#music {
+    grid-column: 2;
+    position: relative;
+    z-index: 1000;
+    opacity: .4;
+}
+
+#mask {
+    background-image: linear-gradient(to top, #6d44cc5d 0%, #f09cd880 100%);
+    opacity: .42;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+@media (max-width: 992px) {
+    #wrapper {
+        grid-column: span 12;
+    }
+
+    #clock-box #clock {
+        grid-column: 2 / 12;
+    }
+
+    .avt {
+        width: 120px;
+        height: 120px;
+    }
+
+    #info .one, #info .two{
+        grid-column: span 12;;
+    }
+
+    #heart {
+        grid-column: span 12;
+        padding-bottom: 1rem;
+    }
+
+    footer {
+        font-size: 1.2rem;
+        margin: 0;
+        padding-bottom: 2rem;
+    }
+}
+/* 
+.heart {
+    position: relative;
+    color: #FF4181;
+    font-size: 350px;
+} */
+
+.heart {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    background-color: deeppink;
+    transform: rotate(45deg) scale(1);
+    border-radius: 0 0 12px 0;
+    filter: drop-shadow(0 0 10px rgba(255, 111, 145, 0.5));
+    -webkit-animation: pumpHeart 1500ms ease-in-out infinite;
+    animation: pumpHeart 1500ms ease-in-out infinite, shadowPulse 2s infinite ease-in-out;
+}
+
+@keyframes shadowPulse {
+    0% {
+        filter: drop-shadow(0 0 10px rgba(255, 111, 145, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 111, 145, 0.8));
+    }
+    100% {
+        filter: drop-shadow(0 0 10px rgba(255, 111, 145, 0.5));
+    }
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: deeppink;
+}
+
+.heart::before {
+    transform: translateY(-50%);
+}
+
+.heart::after {
+    transform: translateX(-50%);
+}
+
+@-webkit-keyframes pumpHeart {
+    0% {
+        transform: rotate(45deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(45deg) scale(1);
+    }
+
+    60% {
+        transform: rotate(45deg) scale(1.2);
+    }
+
+    80% {
+        transform: rotate(45deg) scale(0.95);
+    }
+
+    90% {
+        transform: rotate(45deg) scale(1);
+    }
+
+    100% {
+        transform: rotate(45deg) scale(1);
+    }
+}
+
+@keyframes pumpHeart {
+    0% {
+        transform: rotate(45deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(45deg) scale(1);
+    }
+
+    60% {
+        transform: rotate(45deg) scale(1.2);
+    }
+
+    80% {
+        transform: rotate(45deg) scale(0.95);
+    }
+
+    90% {
+        transform: rotate(45deg) scale(1);
+    }
+
+    100% {
+        transform: rotate(45deg) scale(1);
+    }
+}
+
+.heart-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart-text {
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    transform: rotate(-45deg);
+    bottom: 23px;
+}
+
+.heart-text span {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.counter {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+    max-height: 80px;
+}
+
+.counter-box {
+    background-color: #6b5b95;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 60px;
+    font-family: "Comfortaa", sans-serif;
+    height: 52px;
+}
+
+.counter-box span {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+/* Progress bar */
+
+.progress-container {
+    text-align: center;
+}
+
+.progress-bar {
+    width: 500px;
+    height: 12px;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.progress {
+    height: 100%;
+    background-color: #ff6f91;
+    width: 0;
+    transition: width 0.5s ease-in-out;
+    animation: progress-bar-stripes 1s linear infinite;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    background-size: 1rem 1rem;
+}
+
+@keyframes progress-bar-stripes {
+    from { background-position: 1rem 0; }
+    to { background-position: 0 0; }
+  }
+.progress-text {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+.status {
+    font-size: 16px;
+    color: #ff6f91;
+    margin-top: 10px;
+    font-family: "Comfortaa", sans-serif;
+}
+
+.time-now {
+    display: flex;
+    justify-content: center;
+    font-family: "Comfortaa", sans-serif;
+}
