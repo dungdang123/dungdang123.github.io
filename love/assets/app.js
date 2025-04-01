@@ -38,8 +38,6 @@ document.addEventListener('DOMContentLoaded', function(){
             days: remainingDaysAfterWeeks
         };
     }
-    
-    
 
     function getDaysYear() {
         const daysInYear = 365;
@@ -73,9 +71,6 @@ document.addEventListener('DOMContentLoaded', function(){
     setInterval(updateClock, 1000);
     updateClock();
 
-    document.querySelector("date").textContent = Math.floor(Math.floor((new Date() - yourDate) / 1000) / 60 / 60 / 24)+" DAYS";
-    document.querySelector("[daysC]").textContent = Math.floor(Math.floor((new Date() - yourDate) / 1000) / 60 / 60 / 24);
-
     function olock() {
         var today = new Date(),
         hrs = (Math.floor( Math.floor((today - yourDate) / 1000) / 60 / 60)) % 24,
@@ -87,6 +82,8 @@ document.addEventListener('DOMContentLoaded', function(){
         document.querySelector("span[month]").textContent = diff.months;
         document.querySelector("span[week]").textContent = diff.weeks;
         document.querySelector("span[day]").textContent = diff.days;
+        document.querySelector("date").textContent = Math.floor(Math.floor((new Date() - yourDate) / 1000) / 60 / 60 / 24)+" DAYS";
+        document.querySelector("[daysC]").textContent = Math.floor(Math.floor((new Date() - yourDate) / 1000) / 60 / 60 / 24);
         getDaysYear();
     } olock();
     var timer = setInterval(function(){olock()}, 1000);
@@ -139,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     function calculateAge(day, month, year) {
-        const currentDate = new Date("2025-03-27T00:00:00");
+        const currentDate = new Date();
         const birthDate = new Date(year, month - 1, day);
         let age = currentDate.getFullYear() - birthDate.getFullYear();
         const currentMonth = currentDate.getMonth();
