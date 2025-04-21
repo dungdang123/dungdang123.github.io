@@ -124,7 +124,7 @@ footer {
     background-image: linear-gradient(to top, #6d44cc5d 0%, #f09cd880 100%);
     opacity: .42;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     position: fixed;
     top: 0;
     left: 0;
@@ -133,6 +133,7 @@ footer {
 @media (max-width: 992px) {
     #wrapper {
         grid-column: span 12;
+        margin-top: 4.6rem;
     }
 
     #clock-box #clock {
@@ -145,18 +146,37 @@ footer {
     }
 
     #info .one, #info .two{
-        grid-column: span 12;;
+        grid-column: span 12;
+    }
+
+    #info {
+        margin-top: 0rem;
     }
 
     #heart {
         grid-column: span 12;
         padding-bottom: 1rem;
+        padding-top: 85px;
+    }
+
+    .two {
+        margin-top: 45px;
     }
 
     footer {
         font-size: 1.2rem;
         margin: 0;
         padding-bottom: 2rem;
+    }
+
+    .progress-bar {
+        width: 100% !important;    
+    }
+
+    .green-audio-player { 
+        top: 40px !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%);
     }
 }
 /* 
@@ -354,3 +374,43 @@ footer {
     justify-content: center;
     font-family: "Comfortaa", sans-serif;
 }
+
+.web-setting-mobile {
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    bottom: 2%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    padding: 5px;
+    background-color: #0000001f;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+}
+  
+/* Mobile (<= 768px) */
+/* @media (max-width: 768px) {
+    .green-audio-player { 
+        top: 40px !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%);
+    }
+} */
+  
+/* Rất nhỏ (<= 480px) */
+/* @media (max-width: 480px) {
+    .green-audio-player { 
+        top: 40px !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%);
+    }
+} */
