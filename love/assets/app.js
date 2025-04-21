@@ -154,30 +154,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
     document.getElementById("age-one").textContent = age1;
     document.getElementById("age-two").textContent = age2;
-    document.getElementById("zodiac-one").innerHTML = `<span style="font-size: 13px;border-radius: 35px;background-color: #FBA78B;color: #fff;padding: 8px 7px;"><span style="font-size: 16px;">${zodiac1.icon}</span> ${zodiac1.name}</span>`;
-    document.getElementById("zodiac-two").innerHTML = `<span style="font-size: 13px;border-radius: 35px;background-color: #FBA78B;color: #fff;padding: 8px 7px;"><span style="font-size: 16px;">${zodiac2.icon}</span> ${zodiac2.name}</span>`;
-
-    // function isMobileDevice() {
-    //     const userAgent = navigator.userAgent.toLowerCase();
-    //     return /mobile|android|iphone|ipad|tablet|blackberry|windows phone/i.test(userAgent);
-    // }
-    
-    // function restrictToDesktop() {console.log("Restricting to desktop...");
-    //     const isMobile = isMobileDevice();
-    //     const isSmallScreen = window.innerWidth <= 768;
-    
-    //     if (isMobile || isSmallScreen) {
-    //         document.body.innerHTML = `
-    //             <div style="text-align:center;padding: 50px;">
-    //             <h1>🚫 Truy cập bị từ chối</h1>
-    //             <p>Trang web này chỉ hỗ trợ máy tính (desktop/laptop).</p>
-    //             </div>
-    //         `;
-    //     } else {
-    //         console.log("Chào mừng bạn đến với trang web trên máy tính!");
-    //     }
-    // }
-    
-    // window.addEventListener("DOMContentLoaded", restrictToDesktop);
-    // window.addEventListener("resize", restrictToDesktop);
+    document.getElementById("zodiac-one").innerHTML = `<span style="font-size: 13px;border-radius: 35px;background-color: #FBA78B;color: #fff;padding: 4px 7px;"><span style="font-size: 16px;">${zodiac1.icon}</span> ${zodiac1.name}</span>`;
+    document.getElementById("zodiac-two").innerHTML = `<span style="font-size: 13px;border-radius: 35px;background-color: #FBA78B;color: #fff;padding: 4px 7px;"><span style="font-size: 16px;">${zodiac2.icon}</span> ${zodiac2.name}</span>`;
 }, false);
