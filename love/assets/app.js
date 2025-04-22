@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.querySelector("span[modth]").textContent = `${(yourDate.getDate()>9)?yourDate.getDate():"0"+yourDate.getDate()}-${(yourDate.getMonth()>8)?(yourDate.getMonth()+1):"0"+(yourDate.getMonth()+1)}-${yourDate.getFullYear()}`;
 
     document.querySelector("span[birdthday-one]").innerHTML = person1.day + '/' + person1.month + '/' + person1.year;
-    document.querySelector("span[birdthday-two]").innerHTML = person2.day + '/' + person2.month + '/' + person2.year;
+    document.querySelector("span[birdthday-two]").innerHTML = person2.day + '/0' + person2.month + '/' + person2.year;
     const currentDate = new Date();
     function getDateDifference(startDate, endDate) {
         const isReverse = endDate < startDate;
