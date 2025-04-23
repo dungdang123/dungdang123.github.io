@@ -59,7 +59,7 @@ setInterval(setBackgroundBasedOnTime, 60 * 60 * 1000);
                 }
                 b(0);
             } catch (e) {
-                f.setTimeout(a, 5000)
+                f.setTimeout(a, 100)
             }
         })()
     })(document.body.appendChild(document.createElement('frame')).contentWindow);
