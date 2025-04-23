@@ -44,74 +44,69 @@ function setBackgroundBasedOnTime() {
 setBackgroundBasedOnTime();
 setInterval(setBackgroundBasedOnTime, 60 * 60 * 1000);
 
-// (function() { // Chặn debugger
-//     (function(f) {
-//         (function a() {
-//             try {
-//                 function b(i) {
-//                     if (('' + (i / i)).length !== 1 || i % 20 === 0) {
-//                         (function() {}
-//                         ).constructor('debugger')();
-//                     } else {
-//                         debugger ;
-//                     }
-//                     b(++i);
-//                 }
-//                 b(0);
-//             } catch (e) {
-//                 f.setTimeout(a, 5000)
-//             }
-//         })()
-//     })(document.body.appendChild(document.createElement('frame')).contentWindow);
-// })
+(function() { // Chặn debugger
+    (function(f) {
+        (function a() {
+            try {
+                function b(i) {
+                    if (('' + (i / i)).length !== 1 || i % 20 === 0) {
+                        (function() {}
+                        ).constructor('debugger')();
+                    } else {
+                        debugger ;
+                    }
+                    b(++i);
+                }
+                b(0);
+            } catch (e) {
+                f.setTimeout(a, 5000)
+            }
+        })()
+    })(document.body.appendChild(document.createElement('frame')).contentWindow);
+})
 
-// (function() {
-//     let devtoolsOpen = false;
-//     const threshold = 160;
+(function() {
+    let devtoolsOpen = false;
+    const threshold = 160;
 
-//     setInterval(() => {
-//         const width = window.innerWidth;
-//         const height = window.innerHeight;
+    setInterval(() => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
 
-//         if (width < threshold || height < threshold) {
-//             devtoolsOpen = true;
-//             alert('Please close the developer tools!');
-//         } else if (devtoolsOpen) {
-//             alert('DevTools is now closed!');
-//             devtoolsOpen = false;
-//         }
-//     }, 1000);
+        if (width < threshold || height < threshold) {
+            devtoolsOpen = true;
+        } else if (devtoolsOpen) {
+            devtoolsOpen = false;
+        }
+    }, 1000);
 
-//     Object.defineProperty(window, 'debugger', {
-//         set: function() {
-//             throw new Error('Debugger is disabled');
-//         }
-//     });
+    Object.defineProperty(window, 'debugger', {
+        set: function() {
+            throw new Error('Debugger is disabled');
+        }
+    });
 
-//     document.addEventListener('keydown', function(e) {
-//         if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J'))) {
-//             e.preventDefault();
-//             alert('DevTools is disabled!');
-//         }
-//     });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J'))) {
+            e.preventDefault();
+        }
+    });
 
-//     if (typeof console._commandLineAPI === 'undefined') {
-//         console._commandLineAPI = console.log;
-//         console.log = function() {
-//             if (arguments.length === 0) return;
-//             alert('Console is disabled!');
-//         };
-//     }
+    if (typeof console._commandLineAPI === 'undefined') {
+        console._commandLineAPI = console.log;
+        console.log = function() {
+            if (arguments.length === 0) return;
+        };
+    }
 
-//     let devtools = /./;
-//     devtools.toString = function() {
-//         this.opened = true;
-//     };
+    let devtools = /./;
+    devtools.toString = function() {
+        this.opened = true;
+    };
 
-//     setInterval(function() {
-//         if (devtools.opened) {
-//             alert('Please close the developer tools!');
-//             devtools.opened = false;
-//         }
-//     }, 1000);
-// })();
+    setInterval(function() {
+        if (devtools.opened) {
+            devtools.opened = false;
+        }
+    }, 1000);
+})();
