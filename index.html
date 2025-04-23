@@ -1,4 +1,3 @@
-
 <!-- Copyright belongs to Dang Van Dung. The copies need to be notified in advance. Thank you. -->
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +13,10 @@
         <link rel="stylesheet" href="./public/styles/normalize.min.css">
         <link rel="stylesheet" href="./public/styles/all.css">
         <link rel="stylesheet" href="./public/styles/loading.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <title>DANG VANDUNG - DEVELOPER</title>
     </head>
     <body>
@@ -23,7 +26,7 @@
             </div>
         </div>
         <ul class="background">
-            <section>
+            <section class="section-main">
                 <div class="container">
                     <div class="profile">
                         <div class="banner"></div>
@@ -31,16 +34,18 @@
                             <div class="image">
                                 <div class="avatar">
                                     <img alt="" aria-hidden="true" src="./public/logo_avatar.png">
-                                    <div class="status">
-                                        <img alt="" aria-hidden="true" src="./public/status/online.png">
-                                    </div>
+                                    <div class="status" id="root"></div>
                                 </div>
                             </div>
                             <div class="badges">
                                 <!-- badges list-->
                                 <img alt="" aria-hidden="true" src="./public/badges/hypesquad_event.svg">
+                                <img alt="" aria-hidden="true" src="./public/badges/active_developer.svg">
                                 <img alt="" aria-hidden="true" src="./public/badges/discord_certified_moderator_old.svg">
-                                <img alt="" aria-hidden="true" src="./public/badges/boost_18_month.svg">
+                                <img alt="" aria-hidden="true" src="./public/badges/boost_24_month.svg">
+                                <img alt="" aria-hidden="true" src="./public/badges/bug_hunter_lv2.svg">
+                                <img alt="" aria-hidden="true" src="./public/badges/discord_certified_moderator.svg">
+                                <img alt="" aria-hidden="true" src="./public/badges/discord_staff.svg">
                                 <img alt="" aria-hidden="true" src="./public/badges/server_owner.svg">
                                 <img alt="" aria-hidden="true" src="./public/badges/supports_slash_commands.svg">
                                 <img alt="" aria-hidden="true" src="./public/badges/verified_bot_developer.svg">
@@ -53,11 +58,11 @@
                                 <svg style="width: 23px;height: 23px;display: inline-flex;margin: 0 5px;" viewBox="0 0.9 23 23">
                                     <path d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z" fill="#1A73E8"></path>
                                 </svg>
-                                <span class="text-discriminator" style="font-size: 18px;">#mecstomk</span> 
+                                <span class="text-discriminator" style="font-size: 18px;">#dvd2k4.it</span> 
                             </div>
                         </div>
                         <span class="text-base text-status">Developing website builder...</span>
-                        <!--<br><span class="text-base text-status">I love Nguyen Vu Huyen Trang ❤💕</span> -->
+                        <br><span class="text-base text-status">I love Nguyen Bui Kim Ngan 💕</span>
                         <div class="divider"> </div>
                         <div class="body">
                             <div class="content">
@@ -65,8 +70,8 @@
                                     <div class="title-body">ABOUT ME <i class="fa-solid fa-objects-align-bottom"></i></div>
                                     <!-- text -->
                                     <span class="text-base">Hi, my name is Dang Van Dung, I'm <span class="birthdays">--</span> years old and I'm a programmer. 
-                                        I am from TuKy - Hai Duong.  
-                                        <br>I know HTML, CSS, SCSS (SASS), CSS, Typescript, Javascript, Python and PHP. There are also skills like Bootstrap, Laravel and Jquery. You can contact me via my Email
+                                        I am from TuKy - Hai Duong (New TuKy - Hai Phong City).  
+                                        <br>I know HTML, CSS, SCSS (SASS), Typescript, Javascript, Python and PHP. There are also skills like Bootstrap, Laravel, Nextjs, React, Jquery and... You can contact me via my Email
                                         <a href="mailto:dangvandung2020@gmail.com">[@]dangvandung2020@gmail.com</a> or
                                         <a href="https://discord.gg/fQCHVByPTk">Discord!</a> Thank you for visiting my Personal Page ❤️💥. </span>
                                     <!-- -->
@@ -164,5 +169,6 @@
         </script>
         <script src="./public/jquery.min.js"></script>
         <script src="./public/script.js"></script>
+        <script type="text/babel" src="./public/api.js"></script>
     </body>
 </html>
