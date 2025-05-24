@@ -18,6 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/duration.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         dayjs.extend(dayjs_plugin_duration);
         dayjs.extend(dayjs_plugin_relativeTime);
@@ -145,7 +146,57 @@
         </div> -->
         <!-- <footer>Thank you for your love 💕</footer> -->
     </div> 
-    
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let lastMove = 0;
+        const maxHearts = 100; // Giới hạn số trái tim tối đa
+        const heartSVG = `<svg class='dl-heartbeat' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>`;
+
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastMove > 150 && document.querySelectorAll('.dl-heartbeat').length < maxHearts) {
+                lastMove = now;
+
+                // Tạo 3-5 trái tim ngẫu nhiên
+                const heartCount = Math.floor(Math.random() * 3) + 3; // 3 đến 5 trái tim
+                for (let i = 0; i < heartCount; i++) {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = heartSVG;
+                    heart.className = 'dl-heartbeat';
+                    document.body.appendChild(heart);
+
+                    // Tính toán vị trí ngẫu nhiên quanh con trỏ
+                    const offsetX = e.pageX + (Math.random() * 30 - 15); // Ngẫu nhiên ±15px
+                    const offsetY = e.pageY + (Math.random() * 30 - 15); // Ngẫu nhiên ±15px
+                    const size = 20 + Math.random() * 40; // Kích thước 20-60px
+                    const hue = Math.random() * 360; // Màu ngẫu nhiên
+
+                    heart.style.left = `${offsetX}px`;
+                    heart.style.top = `${offsetY}px`;
+                    heart.style.width = `${size}px`;
+                    heart.style.height = `${size}px`;
+                    heart.style.fill = `hsl(${hue}, 80%, 60%)`; // Màu sắc tươi sáng
+                    heart.style.opacity = '1';
+                    heart.style.transform = `scale(1)`;
+
+                    // Hiệu ứng di chuyển và phai dần
+                    requestAnimationFrame(() => {
+                        heart.style.transition = 'all 2s ease-out';
+                        heart.style.transform = `translateY(-${50 + Math.random() * 50}px) scale(0.5)`; // Trôi lên và thu nhỏ
+                        heart.style.opacity = '0';
+                    });
+
+                    // Xóa sau 2 giây
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 2000);
+                }
+            }
+        });
+    });
+    </script>
     <script src="assets/app.js"></script>
 </body>
 </html>

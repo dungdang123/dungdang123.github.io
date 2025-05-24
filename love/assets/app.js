@@ -46,22 +46,52 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     function getDaysYear() {
-        const daysInYear = 365;
-        const diffInMs = Math.abs(currentDate - yourDate);
-        const daysPassed = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+        const currentDate = new Date();
+        if (!(yourDate instanceof Date) || isNaN(yourDate)) {
+            throw new Error("yourDate không phải là ngày hợp lệ.");
+        }
+
+        if (yourDate > currentDate) {
+            throw new Error("yourDate phải là ngày trong quá khứ hoặc hiện tại.");
+        }
+
+        const isLeapYear = (year) => (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        const daysInYear = isLeapYear(currentDate.getFullYear()) ? 366 : 365;
+        const getDaysBetweenDates = (date1, date2) => {
+            const start = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
+            const end = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());
+            const oneDay = 1000 * 60 * 60 * 24;
+            return Math.round(Math.abs(end - start) / oneDay);
+        };
+
+        const daysPassed = getDaysBetweenDates(currentDate, yourDate);
+        const getYearsPassed = (startDate, endDate) => {
+            let years = endDate.getFullYear() - startDate.getFullYear();
+            if (
+                endDate.getMonth() < startDate.getMonth() ||
+                (endDate.getMonth() === startDate.getMonth() && endDate.getDate() < startDate.getDate())
+            ) {
+                years--;
+            }
+            return Math.max(0, years);
+        };
+
+        const yearsPassed = getYearsPassed(yourDate, currentDate);
+        const nextYourDate = new Date(currentDate.getFullYear() + 1, yourDate.getMonth(), yourDate.getDate());
+        const daysToNextYourDate = getDaysBetweenDates(currentDate, nextYourDate);
         const percentage = Math.min((daysPassed / daysInYear) * 100, 100);
         const progressBar = document.getElementById("progress");
         const progressText = document.getElementById("progress-text");
         const statusText = document.getElementById("status");
-
-        progressBar.style.width = percentage + "%";
-        progressText.textContent = percentage.toFixed(1) + "%";
-        if (daysPassed >= daysInYear) {
-            statusText.textContent = "1 năm đã trôi qua! 🎉";
-        } else {
-            const daysLeft = daysInYear - daysPassed;
-            statusText.textContent = `Còn ${daysLeft} ngày nữa là hết năm ${(new Date().getFullYear())}.`;
+        if (!progressBar || !progressText || !statusText) {
+            throw new Error("Một hoặc nhiều phần tử DOM không tồn tại.");
         }
+
+        progressBar.style.width = `${percentage}%`;
+        progressText.textContent = `${percentage.toFixed(1)}%`;
+        const daysLeft = daysInYear - daysPassed;
+        statusText.textContent = `${yearsPassed} năm đã trôi qua. Còn ${daysToNextYourDate} ngày đến ${nextYourDate.getDate()}/${nextYourDate.getMonth() + 1}/${nextYourDate.getFullYear()}.`;
+        return { daysPassed, percentage, daysLeft, yearsPassed, daysToNextYourDate };
     }
 
     function updateClock() {
