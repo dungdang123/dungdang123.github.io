@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const seconds = now.diff(tempStart, 'second');
         const totalDays = getTotalDays(yourDate, now);
         rootTime.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        document.querySelector("date").textContent        = `${totalDays} DAYS`;
+        document.querySelector("date").textContent        = `${totalDays} DAYS 💕`;
         document.querySelector("[daysC]").textContent     = totalDays;
         document.querySelector("span[year]").textContent  = years;
         document.querySelector("span[month]").textContent = months;

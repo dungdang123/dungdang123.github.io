@@ -272,6 +272,7 @@ body {
 .text-status {
     margin: 0 16px 0px 16px;
     color: #b9bbbe;
+    display: block;
 }
 
 .divider {
@@ -529,6 +530,74 @@ body {
 
     .username {
         font-size: 15px;
+    }
+}
+
+
+.name-love>.magic {
+    display: inline-block;
+    position: relative;
+}
+
+.name-love>.magic>.magic-star {
+    --size: clamp(20px, 1.2vw, 20px);
+    animation: 0.7s forwards scales;
+    display: block;
+    height: var(--size);
+    left: var(--star-left);
+    position: absolute;
+    top: var(--star-top);
+    width: var(--size);
+}
+
+.name-love>.magic>.magic-star>svg {
+    animation: 1s linear infinite rotate;
+    display: block;
+    opacity: 0.7;
+}
+
+.name-love>.magic>.magic-star>svg>path {
+    fill: #673ab7;
+}
+
+.name-love>.magic>.magic-text {
+    animation: 3s linear infinite background-pan;
+    background: linear-gradient(to right, #7b1fa2, #673ab7, #f48fb1, #7b1fa2);
+    background-size: 200%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+    font-weight: 900;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes background-pan {
+    from {
+        background-position: 0 center;
+    }
+
+    to {
+        background-position: -200% center;
+    }
+}
+
+@keyframes scales {
+    from,
+    to {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1);
     }
 }
 /*# sourceMappingURL=main.css.map */

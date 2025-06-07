@@ -24,13 +24,18 @@
         dayjs.extend(dayjs_plugin_relativeTime);
         dayjs.locale('vi');
     </script>
+    <style>
+        .header {
+            position: relative;
+        }
+    </style>
 </head>
-<body style="position: relative;">
+<body class="header">
     <div id="wrapper">
         <h1 style="font-weight: 600;">ĐẾM NGÀY YÊU v1.3.9 - [LOVE DAYS]</h1>
         <div id="clock-box">
             <div id="clock">
-                <date style="font-weight: bold;">0 DAYS</date>
+                <date style="font-weight: bold;">0 DAYS 💕</date>
                 <time>00:00:00</time>
             </div>
         </div>
@@ -141,10 +146,6 @@
         <div class="web-setting-mobile" id="web-setting-mobile" style="display: none;">
             <i class="fa-solid fa-gear"></i>
         </div>
-        <!-- <div id="music">
-            <audio loop autoplay controls>Your browser does not support the audio element.</audio>
-        </div> -->
-        <!-- <footer>Thank you for your love 💕</footer> -->
     </div> 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
