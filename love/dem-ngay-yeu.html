@@ -148,55 +148,63 @@
         </div>
     </div> 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        let lastMove = 0;
-        const maxHearts = 100; // Giới hạn số trái tim tối đa
-        const heartSVG = `<svg class='dl-heartbeat' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-        </svg>`;
+        document.addEventListener("DOMContentLoaded", () => {
+            let lastMove = 0;
+            const maxHearts = 60;
+            const heartSVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
 
-        document.addEventListener('mousemove', (e) => {
-            const now = Date.now();
-            if (now - lastMove > 150 && document.querySelectorAll('.dl-heartbeat').length < maxHearts) {
+            document.addEventListener("mousemove", (e) => {
+                const now = Date.now();
+                if (now - lastMove < 10) return;
                 lastMove = now;
 
-                // Tạo 3-5 trái tim ngẫu nhiên
-                const heartCount = Math.floor(Math.random() * 3) + 3; // 3 đến 5 trái tim
+                const heartCount = Math.floor(Math.random() * 4) + 1; // 3–6 trái tim mỗi lần
                 for (let i = 0; i < heartCount; i++) {
-                    const heart = document.createElement('div');
+                    const existingHearts = document.querySelectorAll(".dl-heartbeat");
+                    if (existingHearts.length > maxHearts) {
+                        existingHearts[0].remove();
+                    }
+
+                    const heart = document.createElement("div");
+                    heart.className = "dl-heartbeat";
                     heart.innerHTML = heartSVG;
-                    heart.className = 'dl-heartbeat';
-                    document.body.appendChild(heart);
 
-                    // Tính toán vị trí ngẫu nhiên quanh con trỏ
-                    const offsetX = e.pageX + (Math.random() * 30 - 15); // Ngẫu nhiên ±15px
-                    const offsetY = e.pageY + (Math.random() * 30 - 15); // Ngẫu nhiên ±15px
-                    const size = 20 + Math.random() * 40; // Kích thước 20-60px
-                    const hue = Math.random() * 360; // Màu ngẫu nhiên
+                    const size = 16 + Math.random() * 32;
+                    const hue = Math.floor(Math.random() * 360);
+                    const offsetX = e.pageX + (Math.random() * 60 - 30);
+                    const offsetY = e.pageY + (Math.random() * 60 - 30);
 
+                    const rotateStart = Math.floor(Math.random() * 360);
+                    const rotateEnd = rotateStart + (Math.random() * 180 + 90);
+                    const flyY = 100 + Math.random() * 200;
+
+                    heart.style.position = "absolute";
                     heart.style.left = `${offsetX}px`;
                     heart.style.top = `${offsetY}px`;
                     heart.style.width = `${size}px`;
                     heart.style.height = `${size}px`;
-                    heart.style.fill = `hsl(${hue}, 80%, 60%)`; // Màu sắc tươi sáng
-                    heart.style.opacity = '1';
-                    heart.style.transform = `scale(1)`;
+                    heart.style.opacity = "1";
+                    heart.style.transition = "transform 2s ease-out, opacity 2s ease-out";
+                    heart.style.transform = `translate(-50%, -50%) scale(1) rotate(${rotateStart}deg)`;
+                    heart.style.pointerEvents = "none";
+                    heart.style.zIndex = 9999;
 
-                    // Hiệu ứng di chuyển và phai dần
+                    const path = heart.querySelector("path");
+                    path.setAttribute("fill", `hsl(${hue}, 80%, 60%)`);
+
+                    document.body.appendChild(heart);
+
+                    // Kích hoạt animation
                     requestAnimationFrame(() => {
-                        heart.style.transition = 'all 2s ease-out';
-                        heart.style.transform = `translateY(-${50 + Math.random() * 50}px) scale(0.5)`; // Trôi lên và thu nhỏ
-                        heart.style.opacity = '0';
+                        heart.style.transform = `translate(-50%, -${flyY}px) scale(0.5) rotate(${rotateEnd}deg)`;
+                        heart.style.opacity = "0";
                     });
 
                     // Xóa sau 2 giây
-                    setTimeout(() => {
-                        heart.remove();
-                    }, 2000);
+                    setTimeout(() => heart.remove(), 2000);
                 }
-            }
+            });
         });
-    });
     </script>
     <script src="assets/app.js"></script>
 </body>
