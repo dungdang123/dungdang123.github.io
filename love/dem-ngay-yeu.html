@@ -28,11 +28,30 @@
         .header {
             position: relative;
         }
+
+        @font-face {
+            font-family: 'Fontarian Sweet Heart';
+            src: url('assets/Fontarian-Sweet-Heart.woff2') format('woff2'), url('assets/Fontarian-Sweet-Heart.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .font-love {
+            font-family: 'Fontarian Sweet Heart', cursive;
+        }
+
+        .quote {
+            font-size: 1.7rem;
+            font-style: italic;
+            color: #d14d72;
+            grid-column: span 3;
+            text-align: center;
+        }
     </style>
 </head>
 <body class="header">
     <div id="wrapper">
-        <h1 style="font-weight: 600;">ĐẾM NGÀY YÊU v1.3.9 - [LOVE DAYS]</h1>
+        <div class="quote font-love" id="slogan"></div>
         <div id="clock-box">
             <div id="clock">
                 <date style="font-weight: bold;">0 DAYS 💕</date>
@@ -147,6 +166,9 @@
             <i class="fa-solid fa-gear"></i>
         </div>
     </div> 
+    <div style="padding: 10px;background-color: #ffffff00;position: fixed;z-index: 9999;left: 25px;bottom: 50%;width: 20px;height: 20px;font-size: 23px;color: #090909;">
+        <i class="fa-regular fa-gear fa-spin"></i>
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             let lastMove = 0;
@@ -205,6 +227,17 @@
                 }
             });
         });
+    </script>
+    <script>
+        const slogans = [
+            "We don’t complete each other — we grow together.",
+            "Love isn’t perfect — but together, we choose to grow through it.",
+            "Real love is not found, it’s built — day by day, side by side.",
+            "Together, we turn ordinary days into something worth remembering."
+        ];
+
+        const randomIndex = Math.floor(Math.random() * slogans.length);
+        document.getElementById("slogan").innerText = slogans[randomIndex];
     </script>
     <script src="assets/app.js"></script>
 </body>
