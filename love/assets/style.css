@@ -78,6 +78,7 @@ time {
 }
 
 #info {
+    
     margin-top: 1.4rem;
 }
 
@@ -436,6 +437,7 @@ footer {
         transform: translate(-50%, -50%);
     }
 } */
+
 
 body {
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' height='32' width='32'><text y='50%' x='50%' font-size='24' text-anchor='middle' dominant-baseline='central'>💗</text></svg>") 16 16, auto;
