@@ -212,4 +212,64 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById("age-two").textContent = age2;
     document.getElementById("zodiac-one").innerHTML = `<span style="font-size: 13px;border-radius: 35px;background-color: #FBA78B;color: #fff;padding: 4px 7px;"><span style="font-size: 16px;">${zodiac1.icon}</span> ${zodiac1.name}</span>`;
     document.getElementById("zodiac-two").innerHTML = `<span style="font-size: 13px;border-radius: 35px;background-color: #FBA78B;color: #fff;padding: 4px 7px;"><span style="font-size: 16px;">${zodiac2.icon}</span> ${zodiac2.name}</span>`;
+
+    function setupBirthdayCountdown(containerId, birthDateStr) {
+        const container = document.querySelector(containerId);
+        const percentText = document.querySelector(`${containerId}-percent-text`);
+
+        function toVietnamTime(date) {
+            return new Date(date.toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" }));
+        }
+
+        const birthdayDate = new Date(birthDateStr);
+        function updateCountdown() {
+            const now = toVietnamTime(new Date());
+            const currentYear = now.getFullYear();
+            const thisYearBirthday = new Date(currentYear, birthdayDate.getMonth(), birthdayDate.getDate());
+            const nextYearBirthday = new Date(currentYear + 1, birthdayDate.getMonth(), birthdayDate.getDate());
+
+            let prevBirthday, nextBirthday;
+
+            if (now < thisYearBirthday) {
+                prevBirthday = new Date(currentYear - 1, birthdayDate.getMonth(), birthdayDate.getDate());
+                nextBirthday = thisYearBirthday;
+            } else if (now.toDateString() === thisYearBirthday.toDateString()) {
+                container.style.background = `conic-gradient(#00cc99 360deg, #00cc99 0deg)`;
+                percentText.innerHTML = `<i class="fa-solid fa-cake-candles"></i> <i class="fa-solid fa-gift"></i> <i class="fa-solid fa-party-horn"></i>`;
+                setTimeout(updateCountdown, 1000 * 60);
+                return;
+            } else {
+                prevBirthday = thisYearBirthday;
+                nextBirthday = nextYearBirthday;
+            }
+
+            const totalSeconds = (nextBirthday - prevBirthday) / 1000;
+
+            function tick() {
+                const nowVN = toVietnamTime(new Date());
+                const remainingSeconds = (nextBirthday - nowVN) / 1000;
+                const elapsedSeconds = totalSeconds - remainingSeconds;
+
+                if (remainingSeconds <= 0) {
+                    updateCountdown();
+                    return;
+                }
+
+                const percent = (elapsedSeconds / totalSeconds) * 100;
+                const deg = (elapsedSeconds / totalSeconds) * 360;
+
+                container.style.setProperty("--a", `${deg}deg`);
+                container.style.background = `conic-gradient(#006eff ${deg}deg, #6767e2 0deg, #9c9c9cd5 0deg, #9c9c9cd5 360deg)`;
+                percentText.innerHTML = `<i class="fa-solid fa-cake-candles"></i> ${percent.toFixed(1)}%`;
+            }
+
+            tick();
+            setInterval(tick, 1000);
+        }
+
+        updateCountdown();
+    }
+
+    setupBirthdayCountdown("#birthday-male", "2004-11-28T00:00:00");
+    setupBirthdayCountdown("#birthday-female", "2011-09-11T00:00:00");
 }, false);

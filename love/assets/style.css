@@ -68,11 +68,17 @@ time {
     height: 160px;
     border-radius: 50%;
     box-shadow: 2px 2px 8px rgba(0,0,0,.2);
-    border: solid 3px #846FD3;
+    /* border: solid 3px #846FD3; */
+
+    z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #info {
-    margin-top: 2.4rem;
+    margin-top: 1.4rem;
 }
 
 #heart {
@@ -124,7 +130,7 @@ footer {
     background-image: linear-gradient(to top, #6d44cc5d 0%, #f09cd880 100%);
     opacity: .42;
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
@@ -398,9 +404,10 @@ footer {
 }
 
 .dl-heartbeat {
-    position: absolute;
+    position: fixed;
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
     opacity: 1;
+    animation: fly-up 1s ease-out forwards;
     transition: transform 2s ease-out, opacity 2s ease-out;
     z-index: 9999;
     pointer-events: none;
@@ -429,3 +436,55 @@ footer {
         transform: translate(-50%, -50%);
     }
 } */
+
+body {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' height='32' width='32'><text y='50%' x='50%' font-size='24' text-anchor='middle' dominant-baseline='central'>💗</text></svg>") 16 16, auto;
+}
+
+
+@property --a {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 360deg;
+}
+
+.container-birthday {
+    --a: 360deg;
+    width: 169px;
+    height: 169px;
+    border-radius: 50%;
+    transition:--a 1s linear;
+    background: conic-gradient(#6b5b95 var(--a) ,#6767e2 0deg ,#9c9c9cd5 0deg,#9c9c9cd5 360deg);
+    animation: animations 2s linear 1 forward;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container-birthday::before{
+    position: absolute;
+    content: "";
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    color: #fac7c78f;
+    transform: translate(-50%,-50%);
+}
+
+.text-container{
+    width: 70%;
+    height: 100px;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 78%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3em;
+    font-size: 17px;
+    transform: translate(-50%, -50%);
+}

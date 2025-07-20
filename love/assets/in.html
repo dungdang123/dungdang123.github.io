@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Birthday Countdown</title>
+    <style>
+        .birthday-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(#9c9c9cd5 0deg, #9c9c9cd5 360deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 20px;
+        }
+
+        .percent-text, .birthday-text {
+            position: absolute;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .percent-text {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            font-size: 24px;
+        }
+
+        .birthday-text {
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+        }
+
+        body {
+            background: #1e1e2f;
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 40px;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="birthday-male" class="birthday-container">
+        <div id="birthday-male-percent-text" class="percent-text">0%</div>
+        <div id="birthday-male-birthday-text" class="birthday-text">28/11</div>
+    </div>
+
+    <div id="birthday-female" class="birthday-container">
+        <div id="birthday-female-percent-text" class="percent-text">0%</div>
+        <div id="birthday-female-birthday-text" class="birthday-text">11/09</div>
+    </div>
+
+    <script>
+        function setupBirthdayCountdown(containerId, birthDateStr) {
+            const container = document.querySelector(containerId);
+            const percentText = document.querySelector(`${containerId}-percent-text`);
+
+            const birthdayDate = new Date(birthDateStr);
+
+            function updateCountdown() {
+                const now = new Date();
+                let nextBirthday = new Date(now.getFullYear(), birthdayDate.getMonth(), birthdayDate.getDate());
+
+                if (nextBirthday < now) {
+                    nextBirthday.setFullYear(now.getFullYear() + 1);
+                }
+
+                const startTime = new Date(nextBirthday.getFullYear() - 1, birthdayDate.getMonth(), birthdayDate.getDate());
+                const totalSeconds = (nextBirthday - startTime) / 1000;
+
+                const interval = setInterval(() => {
+                    const current = new Date();
+                    let remainingSeconds = (nextBirthday - current) / 1000;
+
+                    if (remainingSeconds <= 0) {
+                        clearInterval(interval);
+                        container.style.background = `conic-gradient(#00cc99 360deg, #00cc99 0deg)`;
+                        percentText.textContent = `🎉`;
+
+                        setTimeout(updateCountdown, 1000);
+                        return;
+                    }
+
+                    const elapsedSeconds = totalSeconds - remainingSeconds;
+                    const percent = (elapsedSeconds / totalSeconds) * 100;
+                    const deg = (elapsedSeconds / totalSeconds) * 360;
+
+                    container.style.setProperty("--a", `${deg}deg`);
+                    container.style.background = `conic-gradient(#006eff ${deg}deg, #6767e2 0deg, #9c9c9cd5 0deg, #9c9c9cd5 360deg)`;
+                    percentText.textContent = `${percent.toFixed(1)}%`;
+                }, 1000);
+            }
+
+            updateCountdown();
+        }
+
+        setupBirthdayCountdown("#birthday-male", "2004-11-28T00:00:00");
+        setupBirthdayCountdown("#birthday-female", "2011-09-11T00:00:00");
+    </script>
+</body>
+</html>

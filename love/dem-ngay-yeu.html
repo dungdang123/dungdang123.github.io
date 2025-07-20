@@ -85,7 +85,10 @@
        
         <div id="info">
             <div class="one">
-                <img src="assets/img/483107237_1480074169634099_2814361370588170842_n.jpg" class="avt">
+                <div style="position: relative;height: 180px;margin-left: 0;">
+                    <img src="assets/img/483107237_1480074169634099_2814361370588170842_n.jpg" class="avt">
+                    <div class="container-birthday" id="birthday-male"></div>
+                </div>
                 <p>Đặng Văn Dũng</p>
                 <span>
                     <div style="display: flex;justify-content: center;align-items: center;align-self: center;margin-bottom: 16px;">
@@ -94,6 +97,7 @@
                     </div>
                 </span>
                 <span style="padding: 5px 10px;background-color: #dfdfdf;border-radius: 15px;" birdthday-one>28/11/2004</span>
+                <div style="margin-top: 18px;font-size: 15px;"><span style="padding: 5px 10px;background-color: #dfdfdf;border-radius: 15px;" id="birthday-male-percent-text" class="percent-text"><i class="fa-solid fa-cake-candles"></i> 0%</span></div>
             </div>
             <div id="heart">
                 <div class="heart-container">
@@ -106,7 +110,10 @@
                 </div>
             </div>
             <div class="two">
-                <img src="assets/img/481275023_122192187476159359_3588124017833424798_n.jpg" class="avt">
+                <div style="position: relative;height: 180px;margin-left: 0;">
+                    <img src="assets/img/481275023_122192187476159359_3588124017833424798_n.jpg" class="avt">
+                    <div class="container-birthday" id="birthday-female"></div>
+                </div>
                 <p>Nguyễn Bùi Kim Ngân</p>
                 <span>
                     <div style="display: flex;justify-content: center;align-items: center;align-self: center;margin-bottom: 16px;">
@@ -115,6 +122,7 @@
                     </div>
                 </span>
                 <span style="padding: 5px 10px;background-color: #dfdfdf;border-radius: 15px;" birdthday-two>11/09/2011</span>
+                <div style="margin-top: 18px;font-size: 15px;"><span style="padding: 5px 10px;background-color: #dfdfdf;border-radius: 15px;" id="birthday-female-percent-text" class="percent-text" style="font-size: 16px;"><i class="fa-solid fa-cake-candles"></i> 0%</span></div>
             </div>
         </div>
          
@@ -167,63 +175,83 @@
         </div>
     </div> 
     <div style="padding: 10px;background-color: #ffffff00;position: fixed;z-index: 9999;left: 25px;bottom: 50%;width: 20px;height: 20px;font-size: 23px;color: #090909;">
-        <i class="fa-regular fa-gear fa-spin"></i>
+        <i class="fa-regular fa-gear fa-spin" style="padding: 5px;background-color: #fff;border-radius: 50%;color: #0364be;cursor: pointer;"></i>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            let lastMove = 0;
             const maxHearts = 60;
-            const heartSVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
+            const heartSVG = `
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 
+                        2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 
+                        3.41.81 4.5 2.09C13.09 3.81 
+                        14.76 3 16.5 3 19.58 3 22 
+                        5.42 22 8.5c0 3.78-3.4 6.86-8.55 
+                        11.54L12 21.35z"/>
+                </svg>`;
 
+            function spawnHeart(x, y) {
+                const existingHearts = document.querySelectorAll(".dl-heartbeat");
+                if (existingHearts.length >= maxHearts) {
+                    existingHearts[0].remove();
+                }
+
+                const heart = document.createElement("div");
+                heart.className = "dl-heartbeat";
+                heart.innerHTML = heartSVG;
+
+                const size = 16 + Math.random() * 24;
+                const hue = Math.floor(Math.random() * 360);
+                const offsetX = x + (Math.random() * 40 - 20);
+                const offsetY = y + (Math.random() * 40 - 20);
+
+                const flyX = Math.random() * 200 - 100;
+                const flyY = Math.random() * 200 - 100;
+                const angle = Math.atan2(flyY, flyX) * (180 / Math.PI);
+
+                Object.assign(heart.style, {
+                    position: "fixed",
+                    left: `${offsetX}px`,
+                    top: `${offsetY}px`,
+                    width: `${size}px`,
+                    height: `${size}px`,
+                    opacity: "1",
+                    pointerEvents: "none",
+                    zIndex: 9999,
+                    transform: `translate(0, 0) scale(1) rotate(0deg)`,
+                    transition: "transform 2s ease-out, opacity 2s ease-out",
+                    filter: "blur(0.6px) drop-shadow(0 0 3px rgba(255, 0, 100, 0.6))"
+                });
+
+                const path = heart.querySelector("path");
+                path.setAttribute("fill", `hsl(${hue}, 80%, 60%)`);
+
+                document.body.appendChild(heart);
+
+                requestAnimationFrame(() => {
+                    heart.style.transform = `
+                        translate(${flyX}px, ${flyY}px)
+                        scale(0.6)
+                        rotate(${angle}deg)
+                    `;
+                    heart.style.opacity = "0";
+                });
+
+                setTimeout(() => heart.remove(), 2000);
+            }
+
+            // Di chuột
             document.addEventListener("mousemove", (e) => {
-                const now = Date.now();
-                if (now - lastMove < 10) return;
-                lastMove = now;
-
-                const heartCount = Math.floor(Math.random() * 4) + 1; // 3–6 trái tim mỗi lần
+                const heartCount = Math.floor(Math.random() * 3) + 2;
                 for (let i = 0; i < heartCount; i++) {
-                    const existingHearts = document.querySelectorAll(".dl-heartbeat");
-                    if (existingHearts.length > maxHearts) {
-                        existingHearts[0].remove();
-                    }
+                    spawnHeart(e.clientX, e.clientY);
+                }
+            });
 
-                    const heart = document.createElement("div");
-                    heart.className = "dl-heartbeat";
-                    heart.innerHTML = heartSVG;
-
-                    const size = 16 + Math.random() * 32;
-                    const hue = Math.floor(Math.random() * 360);
-                    const offsetX = e.pageX + (Math.random() * 60 - 30);
-                    const offsetY = e.pageY + (Math.random() * 60 - 30);
-
-                    const rotateStart = Math.floor(Math.random() * 360);
-                    const rotateEnd = rotateStart + (Math.random() * 180 + 90);
-                    const flyY = 100 + Math.random() * 200;
-
-                    heart.style.position = "absolute";
-                    heart.style.left = `${offsetX}px`;
-                    heart.style.top = `${offsetY}px`;
-                    heart.style.width = `${size}px`;
-                    heart.style.height = `${size}px`;
-                    heart.style.opacity = "1";
-                    heart.style.transition = "transform 2s ease-out, opacity 2s ease-out";
-                    heart.style.transform = `translate(-50%, -50%) scale(1) rotate(${rotateStart}deg)`;
-                    heart.style.pointerEvents = "none";
-                    heart.style.zIndex = 9999;
-
-                    const path = heart.querySelector("path");
-                    path.setAttribute("fill", `hsl(${hue}, 80%, 60%)`);
-
-                    document.body.appendChild(heart);
-
-                    // Kích hoạt animation
-                    requestAnimationFrame(() => {
-                        heart.style.transform = `translate(-50%, -${flyY}px) scale(0.5) rotate(${rotateEnd}deg)`;
-                        heart.style.opacity = "0";
-                    });
-
-                    // Xóa sau 2 giây
-                    setTimeout(() => heart.remove(), 2000);
+            // Click chuột
+            document.addEventListener("click", (e) => {
+                for (let i = 0; i < 6; i++) {
+                    setTimeout(() => spawnHeart(e.clientX, e.clientY), i * 50);
                 }
             });
         });
