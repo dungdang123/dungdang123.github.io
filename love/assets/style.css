@@ -143,13 +143,17 @@ footer {
         margin-top: 4.6rem;
     }
 
+    .quote.font-love {
+        margin-top: 15px;
+    }
+
     #clock-box #clock {
         grid-column: 2 / 12;
     }
 
     .avt {
-        width: 120px;
-        height: 120px;
+        width: 160px;
+        height: 160px;
     }
 
     #info .one, #info .two{
